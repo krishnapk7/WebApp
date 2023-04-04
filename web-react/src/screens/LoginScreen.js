@@ -6,17 +6,30 @@ const LoginScreen = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const login = async () => {
+        const loggedInResponse = await fetch("http://localhost:3001/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+          })
+        }).then(res => console.log(res));
+    };
+
     return(
         <form>
-            <label for="firstName">First Name:</label>
+            <label>First Name:</label>
             <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="firstName" id="firstName" name="firstName" />
-            <label for="lastName">Last Name:</label>
+            <label>Last Name:</label>
             <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="lastName" id="lastName" name="lastName" />
-            <label for="email">email:</label>
+            <label>email:</label>
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" />
-            <label for="password">password:</label>
+            <label>password:</label>
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" />
-            <button>Log In</button>
+            <button onClick={login}>Log In</button>
         </form>
     )
 };

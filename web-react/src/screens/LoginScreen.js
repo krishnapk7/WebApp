@@ -9,7 +9,8 @@ const LoginScreen = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault();
         const body = {
           firstName: firstName,
           lastName: lastName,

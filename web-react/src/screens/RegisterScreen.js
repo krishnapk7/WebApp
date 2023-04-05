@@ -7,9 +7,11 @@ const RegisterScreen = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState('');
     const navigate = useNavigate();
 
-    const register = async () => {
+    const register = async (e) => {
+        e.preventDefault();
         const body = {
                 firstName: firstName,
                 lastName: lastName,
@@ -22,6 +24,7 @@ const RegisterScreen = () => {
         }
         else{
             console.log(registerResponse.body);
+            setErrors(registerResponse.body.error);
         }
     };
 
@@ -36,6 +39,7 @@ const RegisterScreen = () => {
             <label>password:</label>
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" />
             <button onClick={register}>Register</button>
+            <h1>{errors}</h1>
         </form>
     )
 };

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import { auth_post } from "../authentication";
 
 const RegisterScreen = () => {
     const [firstName, setFirstName] = useState('');
@@ -9,16 +10,16 @@ const RegisterScreen = () => {
     const navigate = useNavigate();
 
     const register = async () => {
-        const registerResponse = await fetch("http://localhost:3001/auth/register", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-          })
-        }).then((res) => {if(res.status == 201){navigate("/home")}})
+        const body = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+              }
+        const registerResponse = auth_post("/auth/register", body);
+        if((await registerResponse).status == 201){
+            navigate("/home");
+        }
     };
 
     return(

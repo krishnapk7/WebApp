@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import { auth_post } from "../authentication";
 
 const LoginScreen = () => {
     const [firstName, setFirstName] = useState('');
@@ -9,16 +10,16 @@ const LoginScreen = () => {
     const navigate = useNavigate();
 
     const login = async () => {
-        const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-          })
-        }).then((res) => {if(res.status == 200){navigate("/home")}});
+        const body = {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+        }
+        const loginResponse = auth_post("/auth/login", body);
+        if((await loginResponse).status == 200){
+            navigate("/home");
+        }
     };
 
     return(

@@ -20,6 +20,13 @@ export const register = async (req, res) => {
             email,
             password: passwordHash
         })
+
+        const validationError = newUser.validateSync();
+        console.log(validationError);
+        if (validationError) {
+            throw validationError;
+        }
+
         const user = await newUser.save();
         res.status(201).json(user);
     } catch (error){

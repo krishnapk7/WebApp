@@ -20,6 +20,9 @@ const RegisterScreen = () => {
         if((await registerResponse).status == 201){
             navigate("/home");
         }
+        else{
+            console.log(registerResponse.body);
+        }
     };
 
     return(

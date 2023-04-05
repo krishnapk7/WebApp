@@ -5,25 +5,25 @@ const UserSchema = new mongoose.Schema(
         firstName: {
             type: String,
             required: true,
-            min: 2,
-            max: 50,
+            minlength: 2,
+            maxlength: 50,
         },
         lastName: {
             type: String,
             required: true,
-            min: 2,
-            max: 50,
+            minlength: 2,
+            maxlength: 50,
         },
         email: {
             type: String,
             required: true,
-            max: 50,
+            maxlength: 50,
             unique: true,
         },
         password: {
             type: String,
             required: true,
-            min: 5
+            minlength: 5
         }
     }, { timestamps: true }
 );

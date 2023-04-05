@@ -16,8 +16,8 @@ const LoginScreen = () => {
           email: email,
           password: password,
         }
-        const loginResponse = auth_post("/auth/login", body);
-        if((await loginResponse).status == 200){
+        const loginResponse = await auth_post("/auth/login", body);
+        if(loginResponse.status == 200){
             navigate("/home");
         }
     };

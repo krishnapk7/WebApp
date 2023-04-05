@@ -16,8 +16,8 @@ const RegisterScreen = () => {
                 email: email,
                 password: password,
               }
-        const registerResponse = auth_post("/auth/register", body);
-        if((await registerResponse).status == 201){
+        const registerResponse = await auth_post("/auth/register", body);
+        if(registerResponse.status == 201){
             navigate("/home");
         }
         else{

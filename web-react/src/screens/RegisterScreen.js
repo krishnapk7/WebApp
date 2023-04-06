@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { auth_post } from "../authentication";
 
 const RegisterScreen = () => {
@@ -40,6 +40,9 @@ const RegisterScreen = () => {
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" name="password" />
             <button onClick={register}>Register</button>
             <h1>{errors}</h1>
+            <div>
+                Already Have an Account? <Link to="/login">Log in!</Link>
+            </div>
         </form>
     )
 };

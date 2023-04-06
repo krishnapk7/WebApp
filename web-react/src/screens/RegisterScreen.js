@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { auth_post } from "../authentication";
+import "../styles/register.css";
 
 const RegisterScreen = () => {
     const [firstName, setFirstName] = useState('');
@@ -29,6 +30,7 @@ const RegisterScreen = () => {
     };
 
     return(
+        <main className="registerScreen">
         <form>
             <label>First Name:</label>
             <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="firstName" id="firstName" name="firstName" />
@@ -44,6 +46,7 @@ const RegisterScreen = () => {
                 Already Have an Account? <Link to="/login">Log in!</Link>
             </div>
         </form>
+        </main>
     )
 };
 

@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import HomeScreen from './screens/HomeScreen';
+import "./App.css";
 
 function App() {
   return (

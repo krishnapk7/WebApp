@@ -3,8 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { auth_post } from "../authentication";
 
 const LoginScreen = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -12,8 +10,6 @@ const LoginScreen = () => {
     const login = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         const body = {
-          firstName: firstName,
-          lastName: lastName,
           email: email,
           password: password,
         }
@@ -25,10 +21,6 @@ const LoginScreen = () => {
 
     return(
         <form>
-            <label>First Name:</label>
-            <input value={firstName} onChange={(e) => setFirstName(e.target.value)} type="firstName" id="firstName" name="firstName" />
-            <label>Last Name:</label>
-            <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="lastName" id="lastName" name="lastName" />
             <label>email:</label>
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" />
             <label>password:</label>

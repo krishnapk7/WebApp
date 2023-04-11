@@ -1,39 +1,38 @@
+import axios from 'axios';
+
 export const api_url = 'http://localhost:3001'
 
-export const fetchAPI = async (url: string, body: any = null, headers={}, method: string = "POST") => {
+export const axiosAPI = async (url: string, data: any = null, headers={}, method: string = "POST") => {
     try{
         var payload =  {
             method: method,
+            url: api_url + url,
             headers: {
                     ...headers,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
             },
-            body: ''
+            data: data
         }
 
-        if (method === 'POST'){
-            payload = {...payload, body: JSON.stringify(body)}
-        }
-
-        var res = await fetch(api_url + url, payload)
+        var res = axios(payload);
         
-        var data = await res.json();
+        var data = (await res).data
 
-        return {status: res.status, body: data}
+        return {status: (await res).status, body: data}
     }
     catch(error: any){
         return {status: 'Error', body: {'message': error.message}}
     }
 }
 
-export const auth_get = async (url: string, body: any = null, headers={},) => {
-    return await fetchAPI(url, body, headers, "GET");
+export const auth_get = async (url: string, data: any = null, headers={},) => {
+    return await axiosAPI(url, data, headers, "GET");
 }
-export const auth_post = async (url: string, body: any = null, headers={}) => {
-    return await fetchAPI(url, body, headers, "POST");
+export const auth_post = async (url: string, data: any = null, headers={}) => {
+    return await axiosAPI(url, data, headers, "POST");
 }
 
-export const auth_delete = async (url: string, body: any = null, headers={}) => {
-    return await fetchAPI(url, body, headers, "DELETE");
+export const auth_delete = async (url: string, data: any = null, headers={}) => {
+    return await axiosAPI(url, data, headers, "DELETE");
 }

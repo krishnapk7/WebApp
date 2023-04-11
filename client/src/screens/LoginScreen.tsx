@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { auth_post } from "../authentication";
+import { useSignIn } from "react-auth-kit";
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const signIn = useSignIn();
 
     const login = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -15,6 +17,11 @@ const LoginScreen = () => {
         }
         const loginResponse = await auth_post("/auth/login", body);
         if(loginResponse.status == 200){
+            signIn({
+                token: "test",
+                expiresIn: 3600,
+                tokenType: "Bearer"
+            })
             navigate("/home");
         }
     };

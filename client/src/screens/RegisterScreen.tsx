@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { auth_post } from "../authentication";
+import { useSignIn } from "react-auth-kit";
 
 export default function RegisterScreen() {
     const [firstName, setFirstName] = useState('');
@@ -9,6 +10,7 @@ export default function RegisterScreen() {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
     const navigate = useNavigate();
+    const signIn = useSignIn();
 
     const register = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -20,6 +22,11 @@ export default function RegisterScreen() {
               }
         const registerResponse = await auth_post("/auth/register", body);
         if(registerResponse.status == 201){
+            signIn({
+                token: registerResponse.body.token,
+                expiresIn: 3600,
+                tokenType: "Bearer"
+            })
             navigate("/home");
         }
         else{

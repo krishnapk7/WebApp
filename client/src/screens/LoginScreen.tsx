@@ -18,7 +18,7 @@ const LoginScreen = () => {
         const loginResponse = await auth_post("/auth/login", body);
         if(loginResponse.status == 200){
             signIn({
-                token: "test",
+                token: loginResponse.body.token,
                 expiresIn: 3600,
                 tokenType: "Bearer"
             })

@@ -26,9 +26,9 @@ export const register = async (req, res) => {
         if (validationError) {
             throw validationError;
         }
-
         const user = await newUser.save();
-        res.status(201).json(user);
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        res.status(201).json({token: token, user});
     } catch (error){
         res.status(500).json({ error: error.message });
     }
@@ -45,7 +45,7 @@ export const login = async (req, res) => {
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
         delete user.password;
-        res.status(200).json({ token, user });
+        res.status(200).json({ token: token, user });
     
     } catch (error) {
         res.status(500).json({ error: error.message });

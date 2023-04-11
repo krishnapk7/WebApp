@@ -30,8 +30,7 @@ export default function RegisterScreen() {
             navigate("/home");
         }
         else{
-            console.log(registerResponse.body);
-            setErrors(registerResponse.body.error);
+            setErrors(registerResponse.body);
         }
     };
 

@@ -22,7 +22,7 @@ export const axiosAPI = async (url: string, data: any = null, headers={}, method
         return {status: (await res).status, body: data}
     }
     catch(error: any){
-        return {status: 'Error', body: {'message': error.message}}
+        return {status: 'Error', body: error.response.data.error}
     }
 }
 

@@ -16,6 +16,12 @@ const UserSchema = new mongoose.Schema(
         },
         email: {
             type: String,
+            validate: {
+                validator: function (email) {
+                  return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
+                },
+                message: (props) => `${props.value} is not a valid email address`,
+              },
             required: [true, "Please enter an email"],
             maxlength: [50, "Email must be shorter than 50 characters"],
             unique: true,

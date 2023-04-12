@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { auth_post } from "../authentication";
-import { useSignIn } from "react-auth-kit";
+import { useSignIn, useIsAuthenticated } from "react-auth-kit";
+import { Navigate } from "react-router-dom";
 
 export default function RegisterScreen() {
     const [firstName, setFirstName] = useState('');
@@ -11,6 +12,11 @@ export default function RegisterScreen() {
     const [errors, setErrors] = useState('');
     const navigate = useNavigate();
     const signIn = useSignIn();
+    const isAuthenticated = useIsAuthenticated();
+
+    // if(isAuthenticated()){
+    //     <Navigate to={'/home'} />
+    // }
 
     const register = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();

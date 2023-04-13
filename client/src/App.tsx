@@ -1,12 +1,11 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import LoginScreen from "./screens/LoginScreen";
-import RegisterScreen from "./screens/RegisterScreen";
 import HomeScreen from "./screens/HomeScreen";
 import "./App.css";
 // import { AuthProvider, RequireAuth } from "react-auth-kit";
 import StartScreen from "./screens/StartScreen";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -21,8 +20,10 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<StartScreen />} />
-            <Route path="login/" element={<LoginScreen />} />
-            <Route path="home/" element={<HomeScreen />} />
+            <Route
+              path="home/"
+              element={<ProtectedRoute component={HomeScreen} />}
+            />
           </Routes>
         </Auth0Provider>
       </BrowserRouter>

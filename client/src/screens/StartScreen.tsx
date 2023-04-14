@@ -16,7 +16,7 @@ export default function StartScreen() {
 
   return (
     <div>
-      <button onClick={() => loginWithRedirect()}>TEST</button>
+      <button onClick={() => loginWithRedirect()}>Log In</button>
       <button onClick={handleSignUp}>Sign Up</button>
     </div>
   );

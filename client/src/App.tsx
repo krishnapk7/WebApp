@@ -1,11 +1,10 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import HomeScreen from "./screens/HomeScreen";
-import "./App.css";
-// import { AuthProvider, RequireAuth } from "react-auth-kit";
 import StartScreen from "./screens/StartScreen";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import "./App.css";
 
 function App() {
   return (

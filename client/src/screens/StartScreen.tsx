@@ -13,7 +13,6 @@ export default function StartScreen() {
       },
     });
   };
-
   return (
     <div>
       <button onClick={() => loginWithRedirect()}>Log In</button>

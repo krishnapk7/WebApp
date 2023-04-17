@@ -1,21 +1,25 @@
-import express from 'express';
-import { json } from 'body-parser';
+import express from "express";
+import { json } from "body-parser";
+import userRoutes from "./routes/userRoutes";
 // @ts-ignore
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 require("dotenv").config();
 
-const app = express()
+const app = express();
 
-app.use(json())
+app.use(json());
 
-mongoose.connect(process.env.MONGO_URL || '')
-        .then(() => {
-            console.log('connected')
-        })
-        .catch((error: any) => {
-            console.log(error)
-        })
+app.use("/user", userRoutes);
+
+mongoose
+  .connect(process.env.MONGO_URL || "")
+  .then(() => {
+    console.log("connected");
+  })
+  .catch((error: any) => {
+    console.log(error);
+  });
 
 app.listen(3000, () => {
-    console.log('listening')
-})
+  console.log("listening");
+});

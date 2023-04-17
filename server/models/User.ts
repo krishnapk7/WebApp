@@ -11,9 +11,9 @@ export interface UserInterface {
 export interface UserModel extends UserInterface, Document {}
 
 const UserSchema: Schema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  profile_pic: { type: String, required: true },
+  name: { type: String, required: true, unique: false },
+  email: { type: String, required: true, unique: true },
+  profile_pic: { type: String, required: true, unique: false },
 });
 
 export default mongoose.model<UserModel>("User", UserSchema);

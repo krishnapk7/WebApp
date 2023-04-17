@@ -6,16 +6,20 @@ const HomeScreen = () => {
   const { logout, user } = useAuth0();
 
   useEffect(() => {
-    console.log(user);
-    const body = {
-      name: user?.name,
-      email: user?.email,
-      profile_pic: user?.picture,
-    };
-
-    const res = auth_post("/user/addUser", body);
-    console.log(res);
-  });
+    async function fetchData() {
+      console.log(user);
+      const body = {
+        name: user?.name,
+        email: user?.email,
+        profile_pic: user?.picture,
+      };
+      const res = await auth_post("/user/addUser", body);
+      if (res.status == 200) {
+        console.log(res);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <div>

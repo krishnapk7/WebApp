@@ -6,12 +6,11 @@ const HomeScreen = () => {
   const { logout, user } = useAuth0();
 
   useEffect(() => {
+    console.log(user);
     const body = {
       name: user?.name,
       email: user?.email,
-      username: user?.username,
       profile_pic: user?.picture,
-      user_id: user?.user_id,
     };
 
     const res = auth_post("/user/addUser", body);

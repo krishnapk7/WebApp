@@ -1,6 +1,7 @@
 import express from "express";
 import { json } from "body-parser";
 import userRoutes from "./routes/userRoutes";
+import cors from "cors";
 // @ts-ignore
 import mongoose from "mongoose";
 require("dotenv").config();
@@ -8,6 +9,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(json());
+app.use(cors());
 
 app.use("/user", userRoutes);
 

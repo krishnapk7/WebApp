@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { auth_post } from "../authentication";
 import { useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 const HomeScreen = () => {
   const { logout, user } = useAuth0();
@@ -23,6 +24,7 @@ const HomeScreen = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Welcome {user?.name}</h1>
       <img src={user?.picture} />
       <button onClick={() => logout()}>Log Out</button>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 const HomeScreen = () => {
-  const { logout, user } = useAuth0();
+  const { user } = useAuth0();
 
   useEffect(() => {
     async function fetchData() {
@@ -27,7 +27,6 @@ const HomeScreen = () => {
       <Navbar />
       <h1>Welcome {user?.name}</h1>
       <img src={user?.picture} />
-      <button onClick={() => logout()}>Log Out</button>
     </div>
   );
 };

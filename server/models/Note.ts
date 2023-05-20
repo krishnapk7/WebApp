@@ -12,4 +12,4 @@ const NoteSchema: Schema = new mongoose.Schema({
   text: { type: String, required: true, unique: false },
 });
 
-export default mongoose.model<NoteModel>("User", NoteSchema);
+export default mongoose.model<NoteModel>("Note", NoteSchema);

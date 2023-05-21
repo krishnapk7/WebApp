@@ -2,9 +2,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { auth_post } from "../authentication";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const HomeScreen = () => {
   const { user } = useAuth0();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -27,6 +29,7 @@ const HomeScreen = () => {
       <Navbar />
       <h1>Welcome {user?.name}</h1>
       <img src={user?.picture} />
+      <button onClick={() => navigate("/addNote")}>Add Note</button>
     </div>
   );
 };

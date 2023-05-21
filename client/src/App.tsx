@@ -4,6 +4,7 @@ import HomeScreen from "./screens/HomeScreen";
 import StartScreen from "./screens/StartScreen";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import AddNoteScreen from "./screens/AddNoteScreen";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
             <Route
               path="home/"
               element={<ProtectedRoute component={HomeScreen} />}
+            />
+            <Route
+              path="addNote/"
+              element={<ProtectedRoute component={AddNoteScreen} />}
             />
           </Routes>
         </Auth0Provider>

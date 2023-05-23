@@ -3,11 +3,12 @@ import asyncHandler from "express-async-handler";
 
 export const addNote = asyncHandler(async (req, res) => {
   try {
-    const { name, text } = req.body;
+    const { name, text, user } = req.body;
 
     const newNote = new Note({
       name,
       text,
+      user,
     });
 
     console.log(newNote);

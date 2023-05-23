@@ -26,7 +26,7 @@ export const axiosAPI = async (
 
     return { status: (await res).status, body: data };
   } catch (error: any) {
-    return { status: "Error", body: error.response.data.error };
+    return { status: "Error", body: error };
   }
 };
 

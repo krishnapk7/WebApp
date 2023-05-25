@@ -20,3 +20,14 @@ export const addNote = asyncHandler(async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+export const getNotes = asyncHandler(async (req, res) => {
+  try {
+    const { user } = req.body;
+    const noteUser = await Note.find({ user: user });
+    res.status(200).json({ noteUser });
+  } catch (error: any) {
+    console.log(error);
+    res.status(500).json({ error: error.message });
+  }
+});

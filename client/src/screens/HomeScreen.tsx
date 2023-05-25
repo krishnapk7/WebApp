@@ -1,12 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { auth_post, auth_get } from "../authentication";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
 const HomeScreen = () => {
   const { user } = useAuth0();
   const navigate = useNavigate();
+  const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -24,7 +25,8 @@ const HomeScreen = () => {
         user: user?.email,
       };
       const response = await auth_post("/note/getNotes", body1);
-      console.log(response);
+      console.log(response.body.noteUser);
+      setNotes(response.body.noteUser);
     }
     fetchData();
   }, []);
@@ -40,6 +42,14 @@ const HomeScreen = () => {
       >
         Add Note
       </button>
+      <ul>
+        {notes.map((note: any) => (
+          <li>
+            <p>Name: {note?.name}</p>
+            <p>Text: {note?.text}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

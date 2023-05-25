@@ -25,6 +25,7 @@ export const getNotes = asyncHandler(async (req, res) => {
   try {
     const { user } = req.body;
     const noteUser = await Note.find({ user: user });
+    console.log(user);
     res.status(200).json({ noteUser });
   } catch (error: any) {
     console.log(error);

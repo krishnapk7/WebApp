@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { auth_post } from "../authentication";
+import { auth_post, auth_get } from "../authentication";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,11 @@ const HomeScreen = () => {
       if (res.status == 200) {
         console.log(res);
       }
+      const body1 = {
+        user: user?.email,
+      };
+      const response = await auth_post("/note/getNotes", body1);
+      console.log(response);
     }
     fetchData();
   }, []);

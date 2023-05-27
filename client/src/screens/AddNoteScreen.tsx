@@ -1,9 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { auth_post } from "../authentication";
 import Navbar from "../components/Navbar";
+import Modal from "../components/Modal";
+import { useState } from "react";
 
 export default function AddNoteScreen() {
   const { user } = useAuth0();
+  const [showModal, setShowModal] = useState(false);
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const nameInput = document.getElementById("name") as HTMLInputElement;
@@ -15,6 +18,7 @@ export default function AddNoteScreen() {
       user: user?.email,
     };
     const res = await auth_post("/note/addNote", body);
+    setShowModal(true);
     console.log(res.body);
   };
 
@@ -54,6 +58,7 @@ export default function AddNoteScreen() {
           </button>
         </form>
       </div>
+      <Modal visible={showModal} />
     </div>
   );
 }

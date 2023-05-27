@@ -58,7 +58,7 @@ export default function AddNoteScreen() {
           </button>
         </form>
       </div>
-      <Modal visible={showModal} />
+      <Modal visible={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 }

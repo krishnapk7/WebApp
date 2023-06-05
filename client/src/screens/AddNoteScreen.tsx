@@ -50,6 +50,18 @@ export default function AddNoteScreen() {
               id="text"
             ></input>
           </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Image
+            </label>
+            <input
+              type="file"
+              name="myImage"
+              onChange={(event) => {
+                console.log(event.target);
+              }}
+            />
+          </div>
           <button
             className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
             type="submit"

@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function AddNoteScreen() {
   const { user } = useAuth0();
   const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const nameInput = document.getElementById("name") as HTMLInputElement;
@@ -16,6 +17,7 @@ export default function AddNoteScreen() {
       name: nameInput.value,
       text: textInput.value,
       user: user?.email,
+      image: image,
     };
     const res = await auth_post("/note/addNote", body);
     setShowModal(true);
@@ -59,6 +61,17 @@ export default function AddNoteScreen() {
               name="myImage"
               onChange={(event) => {
                 console.log(event.target);
+                const reader = new FileReader();
+                if (
+                  event.target &&
+                  event.target.files &&
+                  event.target.files[0]
+                ) {
+                  reader.onloadend = () => {
+                    setImage(reader?.result);
+                  };
+                  reader.readAsDataURL(event.target.files[0]);
+                }
               }}
             />
           </div>

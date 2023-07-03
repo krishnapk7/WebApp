@@ -8,6 +8,7 @@ export default function AddNoteScreen() {
   const { user } = useAuth0();
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState<File>();
+  const [modalText, setModalText] = useState("");
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const nameInput = document.getElementById("name") as HTMLInputElement;
@@ -20,6 +21,7 @@ export default function AddNoteScreen() {
       image: URL.createObjectURL(image),
     };
     const res = await auth_post("/note/addNote", body);
+    setModalText("Test");
     setShowModal(true);
     console.log(image);
     console.log(res.body);
@@ -93,7 +95,11 @@ export default function AddNoteScreen() {
           </button>
         </form>
       </div>
-      <Modal visible={showModal} onClose={() => setShowModal(false)} />
+      <Modal
+        modalText={modalText}
+        visible={showModal}
+        onClose={() => setShowModal(false)}
+      />
     </div>
   );
 }

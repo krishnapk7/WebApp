@@ -14,13 +14,24 @@ export default function AddNoteScreen() {
     const nameInput = document.getElementById("name") as HTMLInputElement;
     const textInput = document.getElementById("text") as HTMLInputElement;
 
-    const body = {
-      name: nameInput.value,
-      text: textInput.value,
-      user: user?.email,
-      image: URL.createObjectURL(image),
-    };
+    let body = null;
+    if (image) {
+      body = {
+        name: nameInput.value,
+        text: textInput.value,
+        user: user?.email,
+        image: URL.createObjectURL(image),
+      };
+    } else {
+      body = {
+        name: nameInput.value,
+        text: textInput.value,
+        user: user?.email,
+      };
+    }
+
     const res = await auth_post("/note/addNote", body);
+    console.log(res.body);
     setModalText("Test");
     setShowModal(true);
     console.log(image);

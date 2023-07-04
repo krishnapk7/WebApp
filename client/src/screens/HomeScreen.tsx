@@ -47,7 +47,7 @@ const HomeScreen = () => {
           <li>
             <p>Name: {note?.name}</p>
             <p>Text: {note?.text}</p>
-            <img alt="not found" width="250px" src={note?.image} />
+            <img alt="" width="250px" src={note?.image} />
           </li>
         ))}
       </ul>

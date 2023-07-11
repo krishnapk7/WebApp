@@ -33,3 +33,11 @@ export const getNotes = asyncHandler(async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+export const deleteNote = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.body;
+    const note = await Note.find({ _id: id });
+    console.log(note);
+  } catch {}
+});

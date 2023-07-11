@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { auth_post, auth_get } from "../authentication";
+import { auth_post, auth_delete } from "../authentication";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +32,8 @@ const HomeScreen = () => {
   }, []);
 
   const deleteNote = async (id: any) => {
+    const updatedNotes = notes.filter((note: any) => note._id != id);
+    setNotes(updatedNotes);
     const body = {
       id: id,
     };

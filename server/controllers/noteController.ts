@@ -39,6 +39,7 @@ export const deleteNote = asyncHandler(async (req, res) => {
     const { id } = req.body;
     const note = await Note.find({ _id: id });
     console.log(note);
+    res.status(200);
     await Note.deleteOne({ _id: id });
   } catch {}
 });

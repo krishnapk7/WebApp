@@ -56,6 +56,7 @@ const HomeScreen = () => {
           <li>
             <p>Name: {note?.name}</p>
             <p>Text: {note?.text}</p>
+            <p>Date: {note?.date}</p>
             <p>ID: {note?._id}</p>
             <img alt="" width="250px" src={note?.image} />
             <button

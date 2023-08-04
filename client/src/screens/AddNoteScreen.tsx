@@ -9,6 +9,7 @@ export default function AddNoteScreen() {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState<File>();
   const [modalText, setModalText] = useState("");
+  const [date, setDate] = useState("");
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const nameInput = document.getElementById("name") as HTMLInputElement;
@@ -21,12 +22,14 @@ export default function AddNoteScreen() {
         text: textInput.value,
         user: user?.email,
         image: URL.createObjectURL(image),
+        date: date,
       };
     } else {
       body = {
         name: nameInput.value,
         text: textInput.value,
         user: user?.email,
+        date: date,
       };
     }
 
@@ -68,6 +71,9 @@ export default function AddNoteScreen() {
               type="text"
               id="text"
             ></input>
+          </div>
+          <div>
+            <input type="date" onChange={(e) => setDate(e.target.value)} />
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">

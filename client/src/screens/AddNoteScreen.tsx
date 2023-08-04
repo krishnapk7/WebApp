@@ -73,7 +73,11 @@ export default function AddNoteScreen() {
             ></input>
           </div>
           <div>
-            <input type="date" onChange={(e) => setDate(e.target.value)} />
+            <input
+              type="date"
+              onChange={(e) => setDate(e.target.value)}
+              min={new Date().toISOString().split("T")[0]}
+            />
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">

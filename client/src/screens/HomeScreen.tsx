@@ -8,6 +8,7 @@ const HomeScreen = () => {
   const { user } = useAuth0();
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
+  const curDate = new Date();
 
   useEffect(() => {
     async function fetchData() {
@@ -57,6 +58,7 @@ const HomeScreen = () => {
             <p>Name: {note?.name}</p>
             <p>Text: {note?.text}</p>
             <p>Date: {note?.date}</p>
+            <p>Current Date: {curDate.getFullYear()}</p>
             <p>ID: {note?._id}</p>
             <img alt="" width="250px" src={note?.image} />
             <button
